@@ -15,27 +15,27 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="36dp"
                 android:text="인공지능의 분석이 완료되었습니다!"
                 android:textColor="@color/dark_blue"
-                android:textSize="24dp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:text="회원님의 목표와 설문 결과를 바탕으로\n식단, 운동 플랜이 제공되었습니다."
                 android:textColor="@color/dark_blue"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <!--                    현재체중과 목표체중 비교-->
             <androidx.cardview.widget.CardView
@@ -55,7 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="다이어트 목표"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -78,7 +78,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="1dp"
+                                android:layout_marginStart="1dp"
                                 android:layout_marginTop="20dp">
 
                                 <TextView
@@ -86,22 +86,22 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=""
-                                    android:textSize="20dp"
+                                    android:textSize="20sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="kg"
-                                    android:textSize="20dp"
+                                    android:textSize="20sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="50dp"
+                                    android:layout_marginStart="50dp"
                                     android:text="->"
-                                    android:textSize="17dp" />
+                                    android:textSize="17sp" />
 
                             </LinearLayout>
 
@@ -110,7 +110,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -122,7 +122,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="1dp"
+                                android:layout_marginStart="1dp"
                                 android:layout_marginTop="20dp">
 
                                 <TextView
@@ -130,14 +130,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=""
-                                    android:textSize="20dp"
+                                    android:textSize="20sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="kg"
-                                    android:textSize="20dp"
+                                    android:textSize="20sp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>
@@ -165,7 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="운동계획"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/exercise_plan"
@@ -174,7 +174,7 @@
                         android:layout_marginTop="10dp"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -198,13 +198,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="선호운동"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="(회원님과 비슷한 타입의 사람들이 선호하는 운동입니다.)"
-                        android:textSize="13dp" />
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/prefer_ex"
@@ -213,7 +213,7 @@
                         android:layout_marginTop="10dp"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -237,7 +237,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="평소활동량"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/usual_act"
@@ -246,7 +246,7 @@
                         android:layout_marginTop="10dp"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -270,7 +270,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="기초대사량"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -284,16 +284,16 @@
                             android:layout_marginTop="10dp"
                             android:text=""
                             android:textColor="@color/black"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
                             android:layout_marginTop="10dp"
                             android:text="kcal"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -319,7 +319,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="식단 가이드"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/meal_guide"
@@ -328,7 +328,7 @@
                         android:layout_marginTop="10dp"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="16.5dp"
+                        android:textSize="16.5sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -352,7 +352,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="운동 가이드"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/exercise_guide"
@@ -363,7 +363,7 @@
                         android:linksClickable="true"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -374,11 +374,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginVertical="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:gravity="center"
                 android:text="현재 결과 화면은\n'홈 - AI 플랜 다시보기'에서 보실 수 있습니다."
                 android:textColor="@color/dark_blue"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

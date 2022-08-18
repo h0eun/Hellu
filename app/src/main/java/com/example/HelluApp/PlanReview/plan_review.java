@@ -1,13 +1,12 @@
 package com.example.HelluApp.PlanReview;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.HelluApp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,9 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
 
 // ai 플랜 다시보기 화면
 public class plan_review extends AppCompatActivity {
@@ -43,7 +39,7 @@ public class plan_review extends AppCompatActivity {
         });
     }
 
-    private void PlanReview(){
+    private void PlanReview() {
         // 텍스트뷰 UI 객체 생성
         TextView present_weight = findViewById(R.id.present_weight);     // 현재 체중
         TextView goal_weight = findViewById(R.id.goal_weight);           // 목표 체중
@@ -75,17 +71,17 @@ public class plan_review extends AppCompatActivity {
                 StringBuilder exerciseGuide_builder = new StringBuilder();
 
                 // 식단 가이드에 저장된 항목 불러오기
-                for(int i = 0; i < 6; i++){
+                for (int i = 0; i < 6; i++) {
                     String intToStr = String.valueOf(i);
                     DataSnapshot guide_ds = dataSnapshot.child("식단 가이드").child(intToStr);
 
-                    if( !guide_ds.exists() ){
+                    if (!guide_ds.exists()) {
                         break;
-                    }else{
-                        if(i == 0){
+                    } else {
+                        if (i == 0) {
                             mealGuide = guide_ds.getValue(String.class);
                             mealGuide_builder.append(mealGuide);
-                        }else {
+                        } else {
                             mealGuide_builder.append("\n\n");
                             mealGuide = guide_ds.getValue(String.class);
                             mealGuide_builder.append(mealGuide);
@@ -94,20 +90,20 @@ public class plan_review extends AppCompatActivity {
                 }
 
                 // 운동 가이드에 저장된 항목 불러오기
-                for(int i = 0; i < 4; i++){
+                for (int i = 0; i < 4; i++) {
                     String intToStr = String.valueOf(i);
                     DataSnapshot guide_ds = dataSnapshot.child("운동 가이드").child(intToStr);
 
-                    if( !guide_ds.exists() ){
+                    if (!guide_ds.exists()) {
                         break;
-                    }else{
-                        if(i == 0){
+                    } else {
+                        if (i == 0) {
                             exerciseGuide = guide_ds.getValue(String.class);
                             exerciseGuide_builder.append(exerciseGuide);
-                        }else {
-                            if(i == 2){
+                        } else {
+                            if (i == 2) {
                                 exerciseGuide_builder.append("\n\n");
-                            }else {
+                            } else {
                                 exerciseGuide_builder.append("\n");
                             }
                             exerciseGuide = guide_ds.getValue(String.class);

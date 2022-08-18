@@ -99,10 +99,13 @@
         <entry key="..\:/Users/hongsi/21_if016/app/src/main/res/layout/time_stamp_time_layout.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/hongsi/21_if016/app/src/main/res/menu/menu_home_bottom_navi.xml" value="0.10416666666666667" />
         <entry key="..\:/Users/hongsi/21_if016/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.11944444444444445" />
+        <entry key="..\:/Users/user/Documents/workspaces/github/eve-prj/app/src/main/res/layout-v21/fragment_home.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/user/Documents/workspaces/github/eve-prj/app/src/main/res/layout/activity_plan_choose.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/user/Documents/workspaces/github/eve-prj/app/src/main/res/layout/activity_plan_choose_result.xml" value="0.17916666666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -4,13 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
@@ -25,41 +22,39 @@ import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader;
 import org.tensorflow.lite.Interpreter;
 
 import java.io.File;
-import java.text.BreakIterator;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 public class plan_choose extends AppCompatActivity {
-    float max_result;
-    int index;
-    
-    String Gender = "";                 //성별
-    String Age = "";                    //나이
-    String EditHeight = "";             //신장, 키 (현재 내 키를 쓴다는 의미)
-    String EditWeight = "";             //체중, 몸무게 (현재 내 체중을 쓴다는 의미)
-    String LoseWeight = "";             //목표감량체중 (5를 써준다면 5키로를 빼는것)
-    String PresentWeight = "";          //현재체중 (EditWeight와 값이 똑같을 것)
-    String GoalWeight = "";             //목표체중 (PresentWeight - LoseWeight 한 값)
-    String numberOfWeekOfExercise = ""; // 운동 계획
-    String normalActivity = "";         // 평소 활동량
-    String amountOfExercise = "";       // 하루 목표 운동량
-    ArrayList<String> mealTime = new ArrayList<>();          //식사 시간
-    String purposeOfExercise = "";      // 운동 목적(Motivation)
-    String exercise;                    // 추천 운동
-    ArrayList<String> meal_feedback = new ArrayList<>();   // 식단가이드(피드백)
-    String exerciseURL;            // 추천 운동 영상 링크
-    ArrayList<String> totalExerciseURL = new ArrayList<>();    // 추천 운동 영상 묶음
-    Button result_btn;
+    private float max_result;
+    private int index;
+
+    private String Gender = "";                 //성별
+    private String Age = "";                    //나이
+    private String EditHeight = "";             //신장, 키 (현재 내 키를 쓴다는 의미)
+    private String EditWeight = "";             //체중, 몸무게 (현재 내 체중을 쓴다는 의미)
+    private String LoseWeight = "";             //목표감량체중 (5를 써준다면 5키로를 빼는것)
+    private String PresentWeight = "";          //현재체중 (EditWeight와 값이 똑같을 것)
+    private String GoalWeight = "";             //목표체중 (PresentWeight - LoseWeight 한 값)
+    private String numberOfWeekOfExercise = ""; // 운동 계획
+    private String normalActivity = "";         // 평소 활동량
+    private String amountOfExercise = "";       // 하루 목표 운동량
+    private final ArrayList<String> mealTime = new ArrayList<>();          //식사 시간
+    private String purposeOfExercise = "";      // 운동 목적(Motivation)
+    private String exercise;                    // 추천 운동
+    private final ArrayList<String> meal_feedback = new ArrayList<>();   // 식단가이드(피드백)
+    private String exerciseURL;            // 추천 운동 영상 링크
+    private final ArrayList<String> totalExerciseURL = new ArrayList<>();    // 추천 운동 영상 묶음
 
     private final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private final DatabaseReference databaseReference = firebaseDatabase.getReference();
     // 파이어베이스 유저 아이디 가져오는 코드인 듯? From. daily_stamp_write.java
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseUser user = mAuth.getCurrentUser();
-    String Uid = user.getUid();         // user의 고유 랜덤 값(?)을 문자열로 반환해줌
+    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private final FirebaseUser user = mAuth.getCurrentUser();
+    private final String Uid = user.getUid();         // user의 고유 랜덤 값(?)을 문자열로 반환해줌
+
+    private final HashMap<String, Object> Plan_result = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,26 +62,11 @@ public class plan_choose extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_plan_choose);
 
-        result_btn = findViewById(R.id.pch_result_button);
+        Button result_btn = findViewById(R.id.pch_result_button);
 
         result_btn.setOnClickListener(v -> {
             Checked();
-
-            // 현재 체중이랑 그냥 체중은 값은 다르고 용도가 다름
-            HashMap<String, Object> Plan_result = new HashMap<>();
-            Plan_result.put("성별", Gender);
-            Plan_result.put("나이", Age);
-            Plan_result.put("신장", EditHeight);
-            Plan_result.put("체중", EditWeight);
-            Plan_result.put("목표 감량 체중", LoseWeight);
-            Plan_result.put("현재 체중", PresentWeight);
-            Plan_result.put("목표 체중", GoalWeight);
-            Plan_result.put("운동 주 횟수", numberOfWeekOfExercise);
-            Plan_result.put("하루 목표 운동량", amountOfExercise);
-            Plan_result.put("평소 활동량", normalActivity);
-            Plan_result.put("식사 시간", mealTime);
-            Plan_result.put("운동 목적", purposeOfExercise);
-            Plan_result.put("식단 가이드", meal_feedback);
+            HashMap_connect();
 
             // 선호 운동 출력
             prefer_Exercises(Gender, Age, normalActivity, purposeOfExercise);
@@ -105,6 +85,22 @@ public class plan_choose extends AppCompatActivity {
         });
     }
 
+    private void HashMap_connect() {
+        Plan_result.put("성별", Gender);
+        Plan_result.put("나이", Age);
+        Plan_result.put("신장", EditHeight);
+        Plan_result.put("체중", EditWeight);
+        Plan_result.put("목표 감량 체중", LoseWeight);
+        Plan_result.put("현재 체중", PresentWeight);
+        Plan_result.put("목표 체중", GoalWeight);
+        Plan_result.put("운동 주 횟수", numberOfWeekOfExercise);
+        Plan_result.put("하루 목표 운동량", amountOfExercise);
+        Plan_result.put("평소 활동량", normalActivity);
+        Plan_result.put("식사 시간", mealTime);
+        Plan_result.put("운동 목적", purposeOfExercise);
+        Plan_result.put("식단 가이드", meal_feedback);
+    }
+
     public void Checked() {
         //성별 선택 (단일 선택)
         RadioButton optionG1 = findViewById(R.id.man);                  //optionG1 옵션젠더1=맨
@@ -119,8 +115,6 @@ public class plan_choose extends AppCompatActivity {
 
         //목표
         EditText optionLose = findViewById(R.id.editGoal);              //optionLose 얼만큼 뺄건지 목표감량체중
-        TextView optionPresW = findViewById(R.id.present_weight);       //optionPresW 현재체중(optionWeight랑 값이 똑같음)
-        TextView optionGoalW = findViewById(R.id.goal_weight);          //optionGoalW 목표체중(현재체중-목표감량체중 값)
 
         // 1. 운동 주 횟수(단일 선택)
         RadioButton option11 = findViewById(R.id.q1_radio_Button1);
@@ -314,7 +308,7 @@ public class plan_choose extends AppCompatActivity {
     }
 
     // AI에 필요한 입력 값: 성별, 나이(구간), 평소 활동량, 운동 목적
-    public void prefer_Exercises(String Gender, String Age, String Time_spent, String Motivation){
+    public void prefer_Exercises(String Gender, String Age, String Time_spent, String Motivation) {
         CustomModelDownloadConditions conditions = new CustomModelDownloadConditions.Builder()
                 .requireWifi()
                 .build();
@@ -342,11 +336,11 @@ public class plan_choose extends AppCompatActivity {
                         // 모델 결과값 출력하기
                         for (int i = 0; i < output[0].length; i++) {
                             // 결과값 중에 최댓값 선정하기
-                            if(i == 0){
+                            if (i == 0) {
                                 index = 0;
                                 max_result = output[0][i];
                             }
-                            if(max_result < output[0][i]){
+                            if (max_result < output[0][i]) {
                                 index = i;
                                 max_result = output[0][i];
                             }
@@ -354,7 +348,7 @@ public class plan_choose extends AppCompatActivity {
 
                         String explanation = "";
 
-                        switch(index){
+                        switch (index) {
                             case 0:
                                 exercise = "체육관 운동";
                                 explanation = "헬스장 루틴 정리 영상";
@@ -416,42 +410,41 @@ public class plan_choose extends AppCompatActivity {
                 });
     }
 
-    public String CalculateBEE(String Gender, String strWeight, String strHeight, String strAge){
+    public String CalculateBEE(String Gender, String strWeight, String strHeight, String strAge) {
         double resultBEE = 0;
         // 소수점 두 번째 자리까지
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
-        if(Gender.equals("여")){
+        if (Gender.equals("여")) {
             resultBEE = 655.1 + (9.56 * Double.parseDouble(strWeight)) + (1.85 * Double.parseDouble(strHeight)) - (4.68 * Integer.parseInt(strAge));
-        }else if(Gender.equals("남")){
+        } else if (Gender.equals("남")) {
             resultBEE = 66.5 + (13.75 * Double.parseDouble(strWeight)) + (5 * Double.parseDouble(strHeight)) - (6.76 * Integer.parseInt(strAge));
         }
 
-        String BEE = decimalFormat.format(resultBEE);
-        return BEE;
+        return decimalFormat.format(resultBEE);
     }
 
     float[][] surveyValueRetn(String Gender, String Age, String Time_spent,
-                              String Motivation, float[][] input){
+                              String Motivation, float[][] input) {
         // Gender
-        if(Gender.equals("여")){
+        if (Gender.equals("여")) {
             input[0][0] = 1;
-        }else if (Gender.equals("남")){
+        } else if (Gender.equals("남")) {
             input[0][1] = 1;
         }
 
         // Age
         int intAge = Integer.parseInt(Age);
 
-        if(intAge >= 15 && intAge <= 18){
+        if (intAge >= 15 && intAge <= 18) {
             input[0][2] = 1;
-        }else if(intAge >= 19 && intAge <= 25){
+        } else if (intAge >= 19 && intAge <= 25) {
             input[0][3] = 1;
-        }else if(intAge >= 26 && intAge < 30){
+        } else if (intAge >= 26 && intAge < 30) {
             input[0][4] = 1;
-        }else if(intAge >= 30 && intAge < 40){
+        } else if (intAge >= 30 && intAge < 40) {
             input[0][5] = 1;
-        }else if(intAge >= 40){
+        } else if (intAge >= 40) {
             input[0][6] = 1;
         }
 

@@ -20,7 +20,7 @@ public class plan_evaluation extends Activity {
         setContentView(R.layout.activity_plan_evaluation);
 
         TextView textView = findViewById(R.id.popup_title);
-        textView.setText("AI 플랜 추천이 어떠셨나요?");
+        textView.setText(R.string.plan_evaluation_text);
     }
 
     // 확인 버튼 클릭 시
@@ -29,15 +29,12 @@ public class plan_evaluation extends Activity {
         finish();
 
         // 토스트 메시지
-        Toast.makeText(this.getApplicationContext(),"평가를 남겨주셔서 감사합니다!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getApplicationContext(), R.string.plan_evaluation_thankU_text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         //바깥레이어 클릭시 안닫히게
-        if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-            return false;
-        }
-        return true;
+        return event.getAction() != MotionEvent.ACTION_OUTSIDE;
     }
 }
