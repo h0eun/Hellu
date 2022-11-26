@@ -98,7 +98,7 @@ public class daily_stamp extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 String basalMeta = dataSnapshot.child("기초대사량").getValue(String.class);
-                tv_recommended_kcal.setText(basalMeta);
+                //tv_recommended_kcal.setText(basalMeta);
             }
 
             @Override

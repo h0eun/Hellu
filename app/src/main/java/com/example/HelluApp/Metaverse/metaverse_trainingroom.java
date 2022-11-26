@@ -38,7 +38,7 @@ public class metaverse_trainingroom extends AppCompatActivity {
         b_trainingRoom_enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://gather.town/invite?token=UQhaejD2RqaHyAjQ5qSM1FAUWmRJCn2g"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://app.gather.town/app/jdOWhoMGStXF2VR9/Training%20room"));
                 startActivity(intent);
             }
         });

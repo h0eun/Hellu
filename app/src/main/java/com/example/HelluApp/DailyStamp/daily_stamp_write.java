@@ -208,7 +208,7 @@ public class daily_stamp_write<daily_recyclerview> extends AppCompatActivity {
         //칼로리
         EditText optionKcal = findViewById(R.id.daily_write_kcal);
 
-        tv_recommended_kcal = findViewById(R.id.recommended_kcal_textview);
+        //tv_recommended_kcal = findViewById(R.id.recommended_kcal_textview);
         tv_today_kcal = findViewById(R.id.today_kcal_textview);
 
         //제목 입력
